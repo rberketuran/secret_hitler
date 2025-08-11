@@ -7,7 +7,7 @@ const GameBoard = () => {
     useEffect(() => {
         if (!connected) return;
 
-        socket.emit("joinRoom", { roomId: "game123" });
+        socket.emit("join-room", { roomId: "game123" });
 
         socket.on("gameState", (state) => {
             console.log("Game state updated:", state);

@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { useCreateRoom } from "../../hooks/useCreateRoom"; // adjust path
+import { useSocketRooms } from "../../hooks/useSocketRooms"; // adjust path
 
 const CreateRoom = () => {
     const navigate = useNavigate();
-    const { createRoom, loading, error } = useCreateRoom();
+    const { createRoom, loading, error } = useSocketRooms();
 
     const handleCreate = async () => {
         try {

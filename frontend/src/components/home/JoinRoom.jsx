@@ -1,15 +1,18 @@
 import React from 'react';
-import { useJoinRoom } from '../../hooks/useJoinRoom';
+import { useSocketRooms } from '../../hooks/useSocketRooms';
 import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 const JoinRoom = ({ children, className = '' }) => {
-    const { joinRoom, loading, error } = useJoinRoom();
+    const navigate = useNavigate();
+    const { joinRoom, loading, error } = useSocketRooms();
     const [roomId, setRoomId] = useState('');
 
     const handleJoinRoom = async () => {
         try {
             await joinRoom(roomId);
-            // Handle successful room join (e.g., navigate to room)
+            // Optionally navigate to the room or handle success
+            navigate(`/room/${roomId}`);
         } catch (err) {
             console.error("Failed to join room:", err);
         }
