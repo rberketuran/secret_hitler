@@ -4,6 +4,7 @@ import { Server } from 'socket.io';
 import http from 'http';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import roomRoutes from "./routes/room.route.js";
 
 const PORT = process.env.PORT || 5000;
 dotenv.config();
@@ -36,7 +37,8 @@ io.on('connection', (socket) => {
     });
 });
 
-
+app.use(express.json());
+app.use('/api/v1/room', roomRoutes);
 app.get('/', (req, res) => {
     res.send('Hello World!');
 });
