@@ -3,16 +3,23 @@ import express from 'express';
 import { Server } from 'socket.io';
 import http from 'http';
 import dotenv from 'dotenv';
+import cors from 'cors';
 
 const PORT = process.env.PORT || 5000;
 dotenv.config();
 
 const app = express();
+app.use(cors({
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST"],
+    credentials: true
+}));
 const server = http.createServer(app);
 
 const io = new Server(server, {
     cors: {
-        origin: '*', // allow all for dev
+        origin: "http://localhost:5173",
+
     }
 });
 
@@ -34,6 +41,6 @@ app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });

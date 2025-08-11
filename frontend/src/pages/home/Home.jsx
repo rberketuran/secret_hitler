@@ -1,9 +1,9 @@
-import GameContainer from "../../components/game/GameContainer";
+import GameBoard from "../../components/game/GameBoard";
 
 const Home = () => {
     return (
-        <div className="bg-red">
-            <GameContainer />
+        <div className="w-full">
+            <GameBoard />
         </div>
     );
 };
